@@ -1,0 +1,54 @@
+/* Design tokens from Figma - Multi-step Form Components */
+:root {
+  --color-bg-main: #F1F0FB;
+  --color-bg-white: #FFFFFF;
+  --color-bg-fbfbfe: #FBFBFE;
+  --color-bg-f9f8ff: #F9F8FF;
+  --color-primary: #416da8;
+  --color-primary-light: #6B9AD4;
+  --color-primary-border: #B8CCE8;
+  --color-text-dark: #170F49;
+  --color-text-muted: #6F6C8F;
+  --color-text-light: #A0A3BD;
+  --color-text-secondary: #514F6E;
+  --color-border: #F1F2F9;
+  --color-border-input: #D9DBE9;
+  --color-success: #1BB42D;
+  --shadow-neutral-01: 0px 0.5px 1px rgba(25, 33, 61, 0.04);
+  --shadow-neutral-02: 0px 1px 8px rgba(25, 33, 61, 0.06);
+  --shadow-neutral-03: 0px 2px 15px rgba(25, 33, 61, 0.1);
+  --shadow-primary-04: 0px 5px 15px rgba(65, 109, 168, 0.06);
+  --shadow-primary-glow: 0px 2px 5px rgba(65, 109, 168, 0.25);
+  --gradient-primary: linear-gradient(160.41deg, #6B9AD4 -5.15%, #416da8 87.35%);
+  --gradient-secondary: linear-gradient(151.44deg, #FFFFFF -62.65%, #FBFBFE 83.01%);
+  --gradient-dark: linear-gradient(160.41deg, #514F6E -5.15%, #170F49 87.35%);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--color-bg-main);
+  min-height: 100vh;
+  color: var(--color-text-dark);
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Hidden for now – remove this rule to show the stepper again */
+.stepper-horizontal.stepper-compact {
+  display: none !important;
+}
