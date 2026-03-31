@@ -1,7 +1,17 @@
 // API Service for connecting to Django backend
 // Use a relative path so teammates can access your LAN-hosted frontend.
 // `vite.config.ts` proxies `/api` -> Django.
-const API_BASE_URL = '/api';
+const DEFAULT_API_BASE_URL = '/api'
+const RAW_API_BASE_URL =
+  (import.meta as any).env?.VITE_API_BASE_URL || DEFAULT_API_BASE_URL
+
+function normalizeBaseUrl(value: string): string {
+  // Allow either "/api" (dev proxy) or "https://api.example.com/api" (prod).
+  // We remove any trailing slash so `${base}${path}` is predictable.
+  return String(value || DEFAULT_API_BASE_URL).trim().replace(/\/+$/, '')
+}
+
+const API_BASE_URL = normalizeBaseUrl(RAW_API_BASE_URL)
 
 export interface SupplementaryService {
   id?: number;

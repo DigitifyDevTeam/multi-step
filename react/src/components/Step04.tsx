@@ -525,6 +525,14 @@ function Step04({
       <div className="plan-step-footer">
         <span style={{ fontSize: 16, color: 'var(--color-text-muted)' }}>Étape 5 sur 6</span>
         <div style={{ display: 'flex', gap: 24 }}>
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={onBack}
+            disabled={paymentPhase !== 'ready' || isSubmitting}
+          >
+            Retour
+          </button>
         </div>
       </div>
     </div>

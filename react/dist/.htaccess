@@ -1,0 +1,10 @@
+RewriteEngine On
+
+# If the request is a real file or directory, serve it directly
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Otherwise route everything to the SPA entry point
+RewriteRule . /booking1/index.html [L]
+

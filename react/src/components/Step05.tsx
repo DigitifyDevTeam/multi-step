@@ -3,7 +3,7 @@ interface Step05Props {
   readonly onBack: () => void
 }
 
-function Step05({ onNext }: Step05Props) {
+function Step05({ onNext, onBack }: Step05Props) {
   return (
     <div className="form-step-card form-step-v2">
       <div style={{ display: 'flex', flexDirection: 'column', gap: 24, width: '100%' }}>
@@ -49,7 +49,17 @@ function Step05({ onNext }: Step05Props) {
         </div>
       </div>
 
-      
+      <div className="plan-step-footer">
+        <span style={{ fontSize: 16, color: 'var(--color-text-muted)' }}>Étape 6 sur 6</span>
+        <div style={{ display: 'flex', gap: 24 }}>
+          <button type="button" className="btn btn-secondary" onClick={onBack}>
+            Retour
+          </button>
+          <button type="button" className="btn btn-primary" onClick={onNext}>
+            Terminer
+          </button>
+        </div>
+      </div>
     </div>
   )
 }

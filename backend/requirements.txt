@@ -5,3 +5,4 @@ django-cors-headers>=4.0
 stripe>=10.0
 django-import-export>=3.0
 requests>=2.20
+pymysql>=1.1.0

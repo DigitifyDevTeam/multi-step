@@ -98,6 +98,9 @@ function Step02({ prestationType, onPrestationChange, onNext, onBack, onPlanSele
       <div className="plan-step-footer">
       <span style={{ fontSize: 16, color: 'var(--color-text-muted)' }}>Étape 1 sur 6</span>
         <div style={{ display: 'flex', gap: 24 }}>
+          <button className="btn btn-secondary" onClick={onBack} type="button">
+            Retour
+          </button>
           <button className="btn btn-primary" onClick={onNext} disabled={!canContinue} type="button">
             Continuer
           </button>
