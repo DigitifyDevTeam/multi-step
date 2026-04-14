@@ -174,7 +174,7 @@ function App() {
             <aside className="sidebar sidebar-brix">
               <div className="sidebar-top">
                 <div className="sidebar-logo-brix">
-                  <img src="/logo_4.png" alt="Logo" className="sidebar-logo-img" />
+                  <img src={`${import.meta.env.BASE_URL}logo_4.png`} alt="Logo" className="sidebar-logo-img" />
                 </div>
                 <div className="sidebar-divider" />
                 <div className="sidebar-steps-vertical">
