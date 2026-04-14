@@ -68,9 +68,9 @@ function Step02Prestation({ onNext, onBack, onServicesChange, initialWantsSupple
                     </span>
                   </button>
                   <span className="supplementary-toggle-labels">
-                    <span className={!wantsSupplementary ? 'active' : ''}>non</span>
+                    <span className={!wantsSupplementary ? 'active' : ''}>NON</span>
                     <span>/</span>
-                    <span className={wantsSupplementary ? 'active' : ''}>oui</span>
+                    <span className={wantsSupplementary ? 'active' : ''}>OUI</span>
                   </span>
                 </span>
               </h2>
