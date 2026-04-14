@@ -48,42 +48,41 @@ function Step02Prestation({ onNext, onBack, onServicesChange, initialWantsSupple
   return (
     <div className="form-step-card form-step-v2">
       <div style={{ display: 'flex', flexDirection: 'column', gap: 24, width: '100%' }}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 15, paddingTop: 32 }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', width: '100%', flexWrap: 'wrap', gap: 16 }}>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 12, flex: 1, minWidth: 0 }}>
-              <div className="supplementary-toggle-row">
-                <h2 className="form-step-title supplementary-toggle-title" style={{ margin: 0 }}>
-                  Voulez-vous des prestations supplémentaires ?
-                  <span className="supplementary-toggle-group">
-                    <button
-                      type="button"
-                      role="switch"
-                      aria-checked={wantsSupplementary}
-                      aria-label={wantsSupplementary ? 'Désactiver les prestations supplémentaires' : 'Activer les prestations supplémentaires'}
-                      className={`supplementary-toggle ${wantsSupplementary ? 'on' : ''}`}
-                      onClick={() => handleToggleSupplementary(!wantsSupplementary)}
-                    >
-                      <span className="supplementary-toggle-track">
-                        <span className="supplementary-toggle-thumb" />
-                      </span>
-                    </button>
-                    <span className="supplementary-toggle-labels">
-                      <span className={wantsSupplementary ? 'active' : ''}>oui</span>
-                      <span>/</span>
-                      <span className={!wantsSupplementary ? 'active' : ''}>non</span>
+        <div className="step02-header-section">
+          <span className="step02-etape-label">Étape 2/6</span>
+          <div className="step02-title-badge-wrapper">
+            <div className="supplementary-toggle-row">
+              <h2 className="form-step-title supplementary-toggle-title" style={{ margin: 0 }}>
+                Voulez-vous des prestations supplémentaires ?
+                <span className="supplementary-toggle-group">
+                  <button
+                    type="button"
+                    role="switch"
+                    aria-checked={wantsSupplementary}
+                    aria-label={wantsSupplementary ? 'Désactiver les prestations supplémentaires' : 'Activer les prestations supplémentaires'}
+                    className={`supplementary-toggle ${wantsSupplementary ? 'on' : ''}`}
+                    onClick={() => handleToggleSupplementary(!wantsSupplementary)}
+                  >
+                    <span className="supplementary-toggle-track">
+                      <span className="supplementary-toggle-thumb" />
                     </span>
+                  </button>
+                  <span className="supplementary-toggle-labels">
+                    <span className={!wantsSupplementary ? 'active' : ''}>non</span>
+                    <span>/</span>
+                    <span className={wantsSupplementary ? 'active' : ''}>oui</span>
                   </span>
-                </h2>
-              </div>
-              <div className="supplementary-discount-badge">
-                <span className="supplementary-discount-badge-icon" aria-hidden>−30&nbsp;%</span>
-                <span className="supplementary-discount-badge-text">Offre exclusive : économisez sur toutes les prestations supplémentaires</span>
-              </div>
+                </span>
+              </h2>
             </div>
-            <span style={{ fontSize: 16, color: 'var(--color-text-muted)' }}>Étape 2/6</span>
+            <div className="supplementary-discount-badge">
+              <span className="supplementary-discount-badge-icon" aria-hidden>−30&nbsp;%</span>
+              <span className="supplementary-discount-badge-text">Offre exclusive : économisez sur toutes les prestations supplémentaires</span>
+            </div>
           </div>
+        </div>
 
-          {wantsSupplementary && (
+        {wantsSupplementary && (
           <div className="supplementary-services-grid">
             {SUPPLEMENTARY_SERVICES.map((service) => {
               const qty = getQuantity(service.id)
@@ -111,12 +110,11 @@ function Step02Prestation({ onNext, onBack, onServicesChange, initialWantsSupple
                       </span>
                     </div>
                   </div>
-                  
                   <div className="supplementary-service-control">
                     {!isSelected ? (
                       <div className="supplementary-service-checkbox"></div>
                     ) : (
-                      <div 
+                      <div
                         className="quantity-selector"
                         onClick={(e) => e.stopPropagation()}
                       >
@@ -150,8 +148,7 @@ function Step02Prestation({ onNext, onBack, onServicesChange, initialWantsSupple
               )
             })}
           </div>
-          )}
-        </div>
+        )}
       </div>
 
       <div className="plan-step-footer">

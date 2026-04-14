@@ -683,6 +683,32 @@
 
 /* Supplementary services - Step 2 - Des prestations supplémentaires */
 
+/* Step 02 header layout: étape label + title/badge */
+.step02-header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-top: 32px;
+}
+
+.step02-etape-label {
+  font-size: 16px;
+  color: var(--color-text-muted);
+  order: 1;
+}
+
+.step02-title-badge-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+  order: 0;
+}
+
 /* Toggle switch row */
 .supplementary-toggle-row {
   display: flex;
@@ -1999,8 +2025,8 @@
 
   /* All grids - single column on mobile */
   .supplementary-services-grid {
-    grid-template-columns: 1fr;
-    gap: 12px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
   }
 
   .services-grid {
@@ -2048,22 +2074,86 @@
 
   /* Supplementary service cards */
   .supplementary-service-card {
-    padding: 16px;
+    padding: 12px;
     min-height: auto;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
   }
 
   .supplementary-service-control {
-    min-width: auto;
-    width: 100%;
-    margin-left: 0;
-    justify-content: space-between;
+    min-width: 96px;
+    width: auto;
+    margin-left: 10px;
+    justify-content: flex-end;
   }
 
   .supplementary-service-content {
     width: 100%;
+  }
+
+  .supplementary-service-name {
+    font-size: 14px;
+  }
+
+  .supplementary-service-meta {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 2px;
+  }
+
+  .supplementary-service-meta span:first-child {
+    font-size: 12px;
+  }
+
+  .supplementary-service-price strong {
+    font-size: 14px;
+  }
+
+  .supplementary-service-price .price-original {
+    font-size: 12px;
+  }
+
+  /* Step 2: header — étape on top, title full-width */
+  .step02-header-section {
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 0;
+  }
+
+  .step02-etape-label {
+    order: -1;
+    font-size: 14px;
+  }
+
+  .step02-title-badge-wrapper {
+    width: 100%;
+  }
+
+  .supplementary-toggle-title {
+    font-size: 18px;
+  }
+
+  /* Step 2: -30% badge should use full width on mobile */
+  .supplementary-discount-badge {
+    display: flex;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 10px 14px;
+    gap: 10px;
+  }
+
+  .supplementary-discount-badge-icon {
+    flex-shrink: 0;
+  }
+
+  .supplementary-discount-badge-text {
+    flex: 1;
+    min-width: 0;
+    font-size: 13px;
+    line-height: 1.35;
   }
 
   /* Option cards */
@@ -2330,6 +2420,16 @@
   .services-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 8px;
+  }
+
+  /* Step 2: supplementary services - reduce crowding on very small screens */
+  .supplementary-services-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .supplementary-service-control {
+    min-width: 110px;
   }
 
   .service-card {

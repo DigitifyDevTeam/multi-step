@@ -14,6 +14,9 @@ from django.conf import settings
 from .models import Reservation
 
 
+SUPPLEMENTARY_DISCOUNT_RATE = 0.30  # -30% on supplementary services
+
+
 @dataclass(frozen=True)
 class GmailOAuthConfig:
     client_id: str | None
@@ -89,7 +92,8 @@ def build_admin_reservation_email(reservation: Reservation) -> tuple[str, str, s
         for s in services:
             title = s.get("title") or s.get("service_id") or "Service"
             qty = int(s.get("quantity") or 1)
-            price = float(s.get("price_discounted") or s.get("price_original") or s.get("price") or 0)
+            base_price = float(s.get("price_original") or s.get("price") or s.get("price_discounted") or 0)
+            price = round(base_price * (1.0 - SUPPLEMENTARY_DISCOUNT_RATE), 2)
             line_total = price * qty
             services_subtotal += line_total
             rows.append(
@@ -167,6 +171,18 @@ def build_admin_reservation_email(reservation: Reservation) -> tuple[str, str, s
         + f"\nCréée: {created_iso}\n"
     )
 
+    additional_info_html = ""
+    if reservation.autres_informations:
+        additional_info_html = (
+            '<div style="margin-top:12px;border:1px solid #dce5f3;border-radius:14px;'
+            'background:#ffffff;padding:14px;">'
+            '<div style="font-size:11px;color:#64748b;letter-spacing:.06em;text-transform:uppercase;'
+            'font-weight:700;">📝 Informations complementaires</div>'
+            '<div style="margin-top:8px;color:#1f2937;font-size:13px;line-height:1.55;">'
+            f"{str(reservation.autres_informations).replace(chr(10), '<br />')}"
+            "</div></div>"
+        )
+
     html = f"""
 <!doctype html>
 <html>
@@ -235,7 +251,7 @@ def build_admin_reservation_email(reservation: Reservation) -> tuple[str, str, s
                   </table>
                 </div>
 
-                {"<div style=\"margin-top:12px;border:1px solid #dce5f3;border-radius:14px;background:#ffffff;padding:14px;\"><div style=\"font-size:11px;color:#64748b;letter-spacing:.06em;text-transform:uppercase;font-weight:700;\">📝 Informations complementaires</div><div style=\"margin-top:8px;color:#1f2937;font-size:13px;line-height:1.55;\">" + str(reservation.autres_informations).replace(chr(10), "<br />") + "</div></div>" if reservation.autres_informations else ""}
+                {additional_info_html}
 
                 <div style="margin-top:14px;font-size:11px;color:#64748b;">Creee: {created_iso}</div>
               </td>

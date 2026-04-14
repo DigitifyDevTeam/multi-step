@@ -24,19 +24,30 @@ def parse_time_slot_to_minutes(slot: str) -> int | None:
 
 
 class ReservationSerializer(serializers.ModelSerializer):
+    SUPPLEMENTARY_DISCOUNT_RATE = Decimal("0.30")  # -30% on supplementary services
+    MONEY_QUANTIZE = Decimal("0.01")
+
+    def _supplementary_unit_price(self, service) -> Decimal:
+        """
+        Server-side source of truth for supplementary service pricing.
+
+        We apply a -30% discount to the base/original price (customer pays 70%).
+        We intentionally do NOT trust client-provided "price_discounted" to avoid
+        tampering or double-discount scenarios.
+        """
+        base_price = service.get('price_original') or service.get('price') or service.get('price_discounted') or 0
+        base = Decimal(str(base_price or 0))
+        multiplier = (Decimal("1") - self.SUPPLEMENTARY_DISCOUNT_RATE)
+        return (base * multiplier).quantize(self.MONEY_QUANTIZE)
+
     def _service_line_total(self, service):
         """
         Compute one supplementary service line total robustly from payload.
-        Accepts price keys: price_discounted, price_original, or price.
+        Applies -30% on supplementary services (server-side).
         """
-        price = (
-            service.get('price_discounted')
-            or service.get('price_original')
-            or service.get('price')
-            or 0
-        )
-        quantity = service.get('quantity', 1)
-        return Decimal(str(price or 0)) * Decimal(int(quantity or 0))
+        unit_price = self._supplementary_unit_price(service)
+        quantity = int(service.get('quantity') or 0)
+        return (unit_price * Decimal(quantity)).quantize(self.MONEY_QUANTIZE)
 
     promo_code = serializers.SerializerMethodField()
     promo_discount_type = serializers.SerializerMethodField()
