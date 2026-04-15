@@ -97,7 +97,14 @@ class ReservationViewSet(viewsets.ModelViewSet):
     
     def perform_create(self, serializer):
         """Prices and promo are handled in serializer.create()."""
-        serializer.save()
+        reservation = serializer.save()
+        try:
+            # Notify admin as soon as customer clicks "Confirmer et payer"
+            # (reservation is created, usually with pending status).
+            notify_admin_reservation_confirmed(reservation)
+        except Exception:
+            # Never block reservation creation if email fails.
+            pass
     
     def perform_update(self, serializer):
         """Prices and promo are handled in serializer.update()."""
@@ -188,11 +195,6 @@ class ReservationViewSet(viewsets.ModelViewSet):
         if reservation.status == 'pending':
             reservation.status = 'confirmed'
             reservation.save()
-            try:
-                notify_admin_reservation_confirmed(reservation)
-            except Exception:
-                # Never block confirmation if email fails (dev / config issue).
-                pass
             return Response({'status': 'Reservation confirmed'})
         return Response(
             {'error': f'Cannot confirm reservation with status: {reservation.status}'},

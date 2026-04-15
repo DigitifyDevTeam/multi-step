@@ -81,7 +81,7 @@ def _format_date_fr(d) -> str:
 
 
 def build_admin_reservation_email(reservation: Reservation) -> tuple[str, str, str]:
-    subject = f"Nouvelle réservation confirmée #{reservation.id} — DeepCleaning"
+    subject = f"Nouvelle réservation #{reservation.id} — DeepCleaning"
 
     services = reservation.supplementary_services or []
     services_html = ""
@@ -159,7 +159,7 @@ def build_admin_reservation_email(reservation: Reservation) -> tuple[str, str, s
     )
 
     text = (
-        f"Réservation confirmée #{reservation.id}\n"
+        f"Nouvelle réservation #{reservation.id}\n"
         f"Date: {_format_date_fr(reservation.reservation_date)} à {reservation.time_slot}\n"
         f"Client: {reservation.prenom} {reservation.nom} ({reservation.email}, {reservation.telephone})\n"
         f"Adresse: {reservation.adresse}, {reservation.code_postal} {reservation.ville}\n"
@@ -188,7 +188,7 @@ def build_admin_reservation_email(reservation: Reservation) -> tuple[str, str, s
 <html>
   <body style="margin:0;padding:0;background:#f3f6fb;font-family:Arial,Helvetica,sans-serif;color:#0f172a;">
     <div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;">
-      Nouvelle réservation confirmée #{reservation.id} - {_format_date_fr(reservation.reservation_date)} {reservation.time_slot}
+      Nouvelle réservation #{reservation.id} - {_format_date_fr(reservation.reservation_date)} {reservation.time_slot}
     </div>
     <table role="presentation" cellpadding="0" cellspacing="0" style="width:100%;background:#f3f6fb;padding:22px 10px;">
       <tr>
@@ -200,8 +200,8 @@ def build_admin_reservation_email(reservation: Reservation) -> tuple[str, str, s
                   <tr>
                     <td style="vertical-align:top;">
                       <div style="font-size:12px;opacity:.9;letter-spacing:.08em;text-transform:uppercase;">DeepCleaning</div>
-                      <div style="margin-top:6px;font-size:23px;line-height:1.2;font-weight:800;">Reservation confirmee</div>
-                      <div style="margin-top:8px;font-size:13px;opacity:.95;">Paiement valide via Stripe</div>
+                      <div style="margin-top:6px;font-size:23px;line-height:1.2;font-weight:800;">Nouvelle reservation</div>
+                      <div style="margin-top:8px;font-size:13px;opacity:.95;">Notification admin</div>
                     </td>
                     <td align="right" style="vertical-align:top;">
                       <div style="display:inline-block;padding:7px 12px;border-radius:999px;background:rgba(255,255,255,.18);font-size:12px;font-weight:700;">ID #{reservation.id}</div>

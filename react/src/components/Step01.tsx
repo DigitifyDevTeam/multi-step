@@ -38,7 +38,8 @@ function Step01({ onNext, onBack, onFormChange, initialData }: Step01Props) {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
-    const newFormData = { ...formData, [name]: value }
+    const nextValue = name === 'telephone' ? value.replace(/\D/g, '') : value
+    const newFormData = { ...formData, [name]: nextValue }
     setFormData(newFormData)
     onFormChange?.(newFormData)
     
@@ -119,6 +120,7 @@ function Step01({ onNext, onBack, onFormChange, initialData }: Step01Props) {
     if (!formData.nom.trim()) newErrors.nom = 'Le nom est obligatoire'
     if (!formData.prenom.trim()) newErrors.prenom = 'Le prénom est obligatoire'
     if (!formData.telephone.trim()) newErrors.telephone = 'Le téléphone est obligatoire'
+    else if (!/^\d+$/.test(formData.telephone)) newErrors.telephone = 'Le téléphone doit contenir uniquement des chiffres'
     if (!formData.email.trim()) newErrors.email = 'L\'email est obligatoire'
     if (!formData.adresse.trim()) newErrors.adresse = 'L\'adresse est obligatoire'
     if (!formData.ville.trim()) newErrors.ville = 'La ville est obligatoire'
@@ -186,6 +188,8 @@ function Step01({ onNext, onBack, onFormChange, initialData }: Step01Props) {
                   placeholder="Votre numéro de téléphone"
                   value={formData.telephone}
                   onChange={handleChange}
+                  inputMode="numeric"
+                  pattern="[0-9]*"
                   required
                 />
                 {errors.telephone && <span style={{ color: 'red', fontSize: '12px', marginTop: '4px', display: 'block' }}>{errors.telephone}</span>}
@@ -195,7 +199,7 @@ function Step01({ onNext, onBack, onFormChange, initialData }: Step01Props) {
               <label className="input-label">Email</label>
               <div className="input-field">
                 <input
-                  type="email"
+                  type="text"
                   name="email"
                   placeholder="Votre adresse e-mail"
                   value={formData.email}

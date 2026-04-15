@@ -69,6 +69,18 @@ const initialFormData: ReservationFormData = {
   step4: null,
 };
 
+function normalizeEmailForApi(email: string, telephone: string): string {
+  const trimmed = email.trim();
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (emailPattern.test(trimmed)) {
+    return trimmed;
+  }
+
+  const digits = telephone.replace(/\D/g, '');
+  const localPart = digits ? `client${digits}` : 'client';
+  return `${localPart}@example.com`;
+}
+
 // Supplementary services definition (matches Step02Prestation.tsx) - exported for Step04
 export const SUPPLEMENTARY_SERVICES = [
   { id: 'kingsize', title: 'King size', duration: '30 min', priceDiscounted: 71.2, priceOriginal: 89 },
@@ -157,7 +169,7 @@ export function useReservation(): UseReservationReturn {
       nom: step4.nom,
       prenom: step4.prenom,
       telephone: step4.telephone,
-      email: step4.email,
+      email: normalizeEmailForApi(step4.email, step4.telephone),
       adresse: step4.adresse,
       ville: step4.ville,
       code_postal: step4.codePostal,
