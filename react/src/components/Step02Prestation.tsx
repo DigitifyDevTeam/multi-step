@@ -76,7 +76,7 @@ function Step02Prestation({ onNext, onBack, onServicesChange, initialWantsSupple
               </h2>
             </div>
             <div className="supplementary-discount-badge">
-              <span className="supplementary-discount-badge-icon" aria-hidden>−30&nbsp;%</span>
+              <span className="supplementary-discount-badge-icon" aria-hidden>−20&nbsp;%</span>
               <span className="supplementary-discount-badge-text">Offre exclusive : économisez sur toutes les prestations supplémentaires</span>
             </div>
           </div>

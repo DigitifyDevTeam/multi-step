@@ -1630,6 +1630,53 @@
   color: #FFFFFF;
 }
 
+/* Step 04 - Summary & Payment layout */
+.step04-left-column {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 300px;
+}
+
+.step04-right-column {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.step04-section-panel {
+  padding: 24px;
+  background-color: var(--color-bg-fbfbfe);
+  border: 1px solid var(--color-border-input);
+  border-radius: 16px;
+}
+
+.step04-payment-box {
+  padding: 24px;
+  background-color: var(--color-bg-white);
+  border: 2px solid var(--color-primary);
+  border-radius: 16px;
+  box-shadow: var(--shadow-primary-04);
+  position: sticky;
+  top: 24px;
+}
+
+.step04-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* Step 05 - Success */
+.step05-success-box {
+  padding: 48px;
+  background: var(--color-bg-main);
+  border-radius: 24px;
+  text-align: center;
+}
+
 /* ============================================
    RESPONSIVE STYLES - MOBILE & TABLET
    Desktop (>1024px) remains unchanged
@@ -1840,6 +1887,16 @@
   .job-card {
     flex: 1 1 calc(50% - 8px);
     min-width: 200px;
+  }
+
+  /* Step 04 - columns wrap on tablet */
+  .step04-left-column,
+  .step04-right-column {
+    min-width: 260px;
+  }
+
+  .step04-payment-box {
+    position: static;
   }
 
   /* Input adjustments */
@@ -2385,6 +2442,41 @@
     padding-top: 20px;
   }
 
+  /* Step 04 - Summary columns stack vertically on mobile */
+  .step04-left-column {
+    min-width: 0;
+    width: 100%;
+    flex: 1 1 100%;
+  }
+
+  .step04-right-column {
+    min-width: 0;
+    width: 100%;
+    flex: 1 1 100%;
+  }
+
+  .step04-section-panel {
+    padding: 16px;
+    border-radius: 12px;
+  }
+
+  .step04-payment-box {
+    padding: 16px;
+    border-radius: 12px;
+    position: static;
+  }
+
+  .step04-info-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  /* Step 05 - Success box */
+  .step05-success-box {
+    padding: 24px 16px;
+    border-radius: 16px;
+  }
+
   /* Animations - disable on mobile for performance */
   @media (prefers-reduced-motion: reduce) {
     .form-step-card {
@@ -2459,6 +2551,18 @@
   .form-step-card {
     padding: 16px 12px;
     gap: 16px;
+  }
+
+  .step04-section-panel {
+    padding: 12px;
+  }
+
+  .step04-payment-box {
+    padding: 12px;
+  }
+
+  .step05-success-box {
+    padding: 20px 12px;
   }
 
   .pro-calendar-day {

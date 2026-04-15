@@ -137,6 +137,11 @@ function App() {
     }
   }, [confirmReservationById])
 
+  // Keep each newly opened step anchored at the top on mobile/desktop.
+  useEffect(() => {
+    globalThis.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+  }, [currentStep])
+
   return (
     <div className="multistep-form-wrapper">
       {/* Error/Success Messages */}

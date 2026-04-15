@@ -58,6 +58,7 @@ export interface Reservation {
 // Generic fetch helper
 async function apiFetch<T>(url: string, options: RequestInit = {}): Promise<T> {
   const response = await fetch(`${API_BASE_URL}${url}`, {
+    credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
       ...options.headers,

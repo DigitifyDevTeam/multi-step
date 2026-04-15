@@ -15,14 +15,8 @@ function Step05({ onNext, onBack }: Step05Props) {
             </div>
           </div>
 
-          <div
-            style={{
-              padding: 48,
-              background: 'var(--color-bg-main)',
-              borderRadius: 24,
-              textAlign: 'center',
-            }}
-          >
+          <div className="step05-success-box">
+
             <div
               style={{
                 width: 80,

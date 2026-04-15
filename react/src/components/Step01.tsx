@@ -145,7 +145,7 @@ function Step01({ onNext, onBack, onFormChange, initialData }: Step01Props) {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 20, width: '100%' }}>
           {/* Row 1: Nom + Prénom */}
           <div className="input-row">
-            <div className="input-group" style={{ flex: 1, minWidth: 274 }}>
+            <div className="input-group">
               <label className="input-label">Nom</label>
               <div className="input-field">
                 <input
@@ -159,7 +159,7 @@ function Step01({ onNext, onBack, onFormChange, initialData }: Step01Props) {
                 {errors.nom && <span style={{ color: 'red', fontSize: '12px', marginTop: '4px', display: 'block' }}>{errors.nom}</span>}
               </div>
             </div>
-            <div className="input-group" style={{ flex: 1, minWidth: 274 }}>
+            <div className="input-group">
               <label className="input-label">Prénom</label>
               <div className="input-field">
                 <input
@@ -177,7 +177,7 @@ function Step01({ onNext, onBack, onFormChange, initialData }: Step01Props) {
 
           {/* Row 2: Téléphone + Email */}
           <div className="input-row">
-            <div className="input-group" style={{ flex: 1, minWidth: 274 }}>
+            <div className="input-group">
               <label className="input-label">Numéro de téléphone</label>
               <div className="input-field">
                 <input
@@ -191,7 +191,7 @@ function Step01({ onNext, onBack, onFormChange, initialData }: Step01Props) {
                 {errors.telephone && <span style={{ color: 'red', fontSize: '12px', marginTop: '4px', display: 'block' }}>{errors.telephone}</span>}
               </div>
             </div>
-            <div className="input-group" style={{ flex: 1, minWidth: 274 }}>
+            <div className="input-group">
               <label className="input-label">Email</label>
               <div className="input-field">
                 <input
@@ -209,7 +209,7 @@ function Step01({ onNext, onBack, onFormChange, initialData }: Step01Props) {
 
           {/* Row 3: Adresse (full width) – Places API autocomplete via backend */}
           <div className="input-row">
-            <div className="input-group" style={{ flex: 1, minWidth: '100%', position: 'relative' }}>
+            <div className="input-group" style={{ position: 'relative' }}>
               <label className="input-label">Adresse</label>
               <div className="input-field" style={{ position: 'relative' }}>
                 <input
@@ -290,7 +290,7 @@ function Step01({ onNext, onBack, onFormChange, initialData }: Step01Props) {
 
           {/* Row 4: Ville + Code postal */}
           <div className="input-row">
-            <div className="input-group" style={{ flex: 1, minWidth: 274 }}>
+            <div className="input-group">
               <label className="input-label">Ville</label>
               <div className="input-field">
                 <input
@@ -304,7 +304,7 @@ function Step01({ onNext, onBack, onFormChange, initialData }: Step01Props) {
                 {errors.ville && <span style={{ color: 'red', fontSize: '12px', marginTop: '4px', display: 'block' }}>{errors.ville}</span>}
               </div>
             </div>
-            <div className="input-group" style={{ flex: 1, minWidth: 274 }}>
+            <div className="input-group">
               <label className="input-label">Code postal</label>
               <div className="input-field">
                 <input
@@ -322,7 +322,7 @@ function Step01({ onNext, onBack, onFormChange, initialData }: Step01Props) {
 
           {/* Row 5: Autre informations (full width textarea) */}
           <div className="input-row">
-            <div className="input-group" style={{ flex: 1, minWidth: '100%' }}>
+            <div className="input-group">
               <label className="input-label">Autres informations</label>
               <div className="input-field" style={{ height: 'auto', padding: 0 }}>
                 <textarea

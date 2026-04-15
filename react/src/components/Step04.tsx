@@ -236,10 +236,10 @@ function Step04({
 
           <div className="step04-columns-wrapper" style={{ display: 'flex', gap: '24px', width: '100%', flexWrap: 'wrap' }}>
             {/* Left Column */}
-            <div style={{ flex: 2, display: 'flex', flexDirection: 'column', gap: '24px', minWidth: '300px' }}>
+            <div className="step04-left-column">
               {/* Prestation Info */}
               {step1 && (
-                <div style={{ padding: '24px', backgroundColor: 'var(--color-bg-fbfbfe)', border: '1px solid var(--color-border-input)', borderRadius: '16px' }}>
+                <div className="step04-section-panel">
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
                     <h3 style={{ fontSize: '18px', fontWeight: 600, color: 'var(--color-text-dark)', margin: 0 }}>Prestation</h3>
                     <button
@@ -281,7 +281,7 @@ function Step04({
 
               {/* Date & Time */}
               {step3 && (
-                <div style={{ padding: '24px', backgroundColor: 'var(--color-bg-fbfbfe)', border: '1px solid var(--color-border-input)', borderRadius: '16px' }}>
+                <div className="step04-section-panel">
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
                     <h3 style={{ fontSize: '18px', fontWeight: 600, color: 'var(--color-text-dark)', margin: 0 }}>Date & Heure</h3>
                     <button
@@ -308,7 +308,7 @@ function Step04({
               )}
 
               {/* Personal Info */}
-              <div style={{ padding: '24px', backgroundColor: 'var(--color-bg-fbfbfe)', border: '1px solid var(--color-border-input)', borderRadius: '16px' }}>
+              <div className="step04-section-panel">
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
                   <h3 style={{ fontSize: '18px', fontWeight: 600, color: 'var(--color-text-dark)', margin: 0 }}>Informations</h3>
                   <button
@@ -320,7 +320,7 @@ function Step04({
                   </button>
                 </div>
                 {step4 ? (
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                  <div className="step04-info-grid">
                     <div>
                       <div style={{ fontSize: '13px', color: 'var(--color-text-muted)', marginBottom: 4 }}>Nom complet</div>
                       <div style={{ fontSize: '15px', fontWeight: 500, color: 'var(--color-text-dark)' }}>{step4.prenom} {step4.nom}</div>
@@ -343,16 +343,8 @@ function Step04({
             </div>
 
             {/* Right Column: Total & Payment */}
-            <div style={{ flex: 1, minWidth: '300px', display: 'flex', flexDirection: 'column' }}>
-              <div style={{
-                padding: '24px',
-                backgroundColor: 'var(--color-bg-white)',
-                border: '2px solid var(--color-primary)',
-                borderRadius: 16,
-                boxShadow: 'var(--shadow-primary-04)',
-                position: 'sticky',
-                top: 24,
-              }}>
+            <div className="step04-right-column">
+              <div className="step04-payment-box">
                 <h3 style={{ fontSize: '18px', fontWeight: 700, color: 'var(--color-text-dark)', marginBottom: 16, marginTop: 0 }}>Total à payer</h3>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                   {step1 && (
